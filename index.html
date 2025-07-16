@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preetham Dandu | Software, ML, & Security</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <script src="https://kit.fontawesome.com/4a3b1f73a2.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header id="header">
+        <nav>
+            <a href="#" class="logo">PD</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="Preetham_Resume_Systems.pdf" target="_blank" class="contact-btn">Resume</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="section-container">
+            <div class="hero-content">
+                <p class="intro-text">Hi, my name is</p>
+                <h1 class="hero-title">Preetham Dandu.</h1>
+                <h2 class="hero-subtitle" id="typing-effect"></h2>
+                <p class="hero-description">
+                    I'm a software engineer and researcher specializing in engineering the end-to-end lifecycle of production-grade AI systems. Currently, I'm a Master's student in Computer Science at Stony Brook University.
+                </p>
+                <div class="social-links">
+                    <a href="https://github.com/preethamdandu" target="_blank" class="social-link-item">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://linkedin.com/in/preetham-dandu" target="_blank" class="social-link-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="mailto:preetham.dandu@stonybrook.edu" class="social-link-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section-container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Preetham, a passionate developer with a knack for creating elegant solutions to complex problems. My journey into tech began with a curiosity for how things work, leading me to a Bachelor's in Computer Science and Engineering from Vellore Institute of Technology, where I specialized in Networking and Security.</p>
+                    <p>Today, I'm honing my skills as a Master's student at Stony Brook University. I've had the privilege of working as a Research Assistant, where I designed real-time ETL pipelines, and as a Software Engineer, diving deep into data science and machine learning.</p>
+                    <p>Here are a few technologies I've been working with recently:</p>
+                    <ul class="tech-list">
+                        <li>Python</li>
+                        <li>React.js</li>
+                        <li>Node.js</li>
+                        <li>AWS</li>
+                        <li>Docker</li>
+                        <li>Kubernetes</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <div class="image-wrapper">
+                        <img src="profile.jpg" alt="Preetham Dandu">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section-container">
+            <h2 class="section-title">Work Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Research Assistant, Knowledge Systems Lab</h3>
+                    <p class="timeline-meta">Stony Brook University | June 2024 - Present</p>
+                    <p>Designed and deployed real-time ETL pipelines for fetal heart rate data using Python and PostgreSQL, ensuring HIPAA compliance and enabling live clinical data access.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Software Engineer</h3>
+                    <p class="timeline-meta">HCLTech | Aug 2023 - Dec 2023</p>
+                    <p>Executed end-to-end data science projects, from data cleaning to predictive modeling, delivering key business insights using Python, R, and TensorFlow.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Full Stack Developer Intern</h3>
+                    <p class="timeline-meta">Oriana IT | Jan 2023 - May 2023</p>
+                    <p>Developed the e-commerce web app 'FashionBOLTz', implementing secure payments and building responsive React.js pages that improved navigation speed by 60%.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section with Case Studies -->
+        <section id="projects" class="section-container">
+            <h2 class="section-title">Projects & Case Studies</h2>
+            <div class="project-grid">
+                <!-- New Project: RadianceAI -->
+                <div class="project-card" data-project-id="radiance-ai">
+                    <div class="card-content">
+                        <h3 class="project-title">RadianceAI Forecasting Engine</h3>
+                        <p class="project-problem"><strong>Problem:</strong> Solar energy output is volatile. How can we accurately forecast solar irradiance to optimize PV system efficiency?</p>
+                        <ul class="project-tech">
+                            <li>Python</li><li>Llama-2</li><li>RAG</li><li>PyTorch</li><li>FAISS</li>
+                        </ul>
+                        <button class="case-study-btn">View Case Study</button>
+                    </div>
+                </div>
+                <!-- New Project: Photonimbus -->
+                <div class="project-card" data-project-id="photonimbus">
+                    <div class="card-content">
+                        <h3 class="project-title">Photonimbus Photo Sharing App</h3>
+                        <p class="project-problem"><strong>Problem:</strong> Modern photo-sharing apps require scalable data storage, secure authentication, and a highly responsive user interface.</p>
+                        <ul class="project-tech">
+                            <li>Django REST</li><li>Angular 8</li><li>Google Cloud</li><li>Docker</li>
+                        </ul>
+                        <button class="case-study-btn">View Case Study</button>
+                    </div>
+                </div>
+                 <!-- New Project: COVID Dashboard -->
+                <div class="project-card" data-project-id="covid-dashboard">
+                    <div class="card-content">
+                        <h3 class="project-title">COVID Tracking Dashboard</h3>
+                        <p class="project-problem"><strong>Problem:</strong> Visualizing the real-time spread of a pandemic requires processing vast datasets with minimal latency for public use.</p>
+                        <ul class="project-tech">
+                            <li>Spring Boot</li><li>Angular 9</li><li>PostGIS</li><li>GCP</li>
+                        </ul>
+                        <button class="case-study-btn">View Case Study</button>
+                    </div>
+                </div>
+                <!-- Existing Project 1: Citation Prediction -->
+                <div class="project-card" data-project-id="citation-prediction">
+                    <div class="card-content">
+                        <h3 class="project-title">Citation Prediction Count</h3>
+                        <p class="project-problem"><strong>Problem:</strong> Accurately forecasting the future impact of scientific papers is a complex challenge for researchers and institutions.</p>
+                        <ul class="project-tech">
+                            <li>Python</li><li>Machine Learning</li><li>Neural Networks</li>
+                        </ul>
+                        <button class="case-study-btn">View Case Study</button>
+                    </div>
+                </div>
+                <!-- Existing Project 2: Plant Disease Detection -->
+                <div class="project-card" data-project-id="plant-disease">
+                    <div class="card-content">
+                        <h3 class="project-title">Plant Disease Detection</h3>
+                        <p class="project-problem"><strong>Problem:</strong> Farmers in remote areas lack quick, accessible tools to diagnose plant diseases, leading to potential crop loss.</p>
+                        <ul class="project-tech">
+                            <li>Django</li><li>Deep Learning</li><li>Distributed Systems</li>
+                        </ul>
+                        <button class="case-study-btn">View Case Study</button>
+                    </div>
+                </div>
+                <!-- Existing Project 3: RECALL Secure Manager -->
+                <div class="project-card" data-project-id="recall-manager">
+                    <div class="card-content">
+                        <h3 class="project-title">RECALL - Secure Manager</h3>
+                        <p class="project-problem"><strong>Problem:</strong> Standard note-taking apps often lack robust security and efficient cross-device access for sensitive information.</p>
+                        <ul class="project-tech">
+                            <li>PHP</li><li>MySQL</li><li>AWS</li><li>Security</li>
+                        </ul>
+                        <button class="case-study-btn">View Case Study</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section-container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-info"><span>Python</span><span>95%</span></div>
+                    <div class="skill-bar"><div class="skill-level" data-level="95"></div></div>
+                </div>
+                 <div class="skill-item">
+                    <div class="skill-info"><span>Java</span><span>90%</span></div>
+                    <div class="skill-bar"><div class="skill-level" data-level="90"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>JavaScript/TypeScript</span><span>90%</span></div>
+                    <div class="skill-bar"><div class="skill-level" data-level="90"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>React.js</span><span>85%</span></div>
+                    <div class="skill-bar"><div class="skill-level" data-level="85"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>AWS</span><span>80%</span></div>
+                    <div class="skill-bar"><div class="skill-level" data-level="80"></div></div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-info"><span>Docker & Kubernetes</span><span>75%</span></div>
+                    <div class="skill-bar"><div class="skill-level" data-level="75"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section-container">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="contact-message">I'm currently seeking new opportunities and would love to connect. Whether you have a question or just want to say hi, feel free to reach out!</p>
+            <a href="mailto:preetham.dandu@stonybrook.edu" class="cta-button">Say Hello</a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Designed & Built by Preetham Dandu</p>
+    </footer>
+
+    <!-- Case Study Modal -->
+    <div id="case-study-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <div id="case-study-content">
+                <!-- Content will be injected by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- JS Libraries -->
+    <script src="https://unpkg.com/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
