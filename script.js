@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Case Study Modal Logic ---
     const caseStudyModal = document.getElementById('case-study-modal');
     const caseStudyContent = document.getElementById('case-study-content');
-    const caseStudyButtons = document.querySelectorAll('.case-study-btn');
     const closeModalBtn = document.querySelector('#case-study-modal .modal-close-btn');
 
     const caseStudies = {
@@ -125,6 +124,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 </ul>
             `,
             outcome: '<p>Launched a secure, cloud-native application with <strong>30% faster data retrieval</strong> compared to initial benchmarks.</p>'
+        },
+        'tunegenie': {
+            title: 'Case Study: TuneGenie — AI‑Powered Music Recommender',
+            role: 'Full‑Stack AI Engineer',
+            process: `
+                <p>The goal was instant, on‑theme playlists from natural prompts (mood, activity, language). I combined collaborative filtering (SVD) for reliable personalization with an LLM refinement layer to align tracks to context. A multi‑agent workflow coordinates Spotify data retrieval, candidate generation, and AI enhancement with graceful fallbacks when APIs aren't available.</p>
+                <p>I built a streamlined Streamlit UI and an offline evaluation harness to compare raw CF vs LLM‑refined lists on cohesion and target alignment. Large scenario suites ("playlist", "ultimate", "ultra‑deep") stress the system and prevent regressions.</p>
+                <h4>Key Decisions:</h4>
+                <ul>
+                    <li><strong>Why Streamlit?</strong> – Rapid iteration, quick product loops, simple deployment.</li>
+                    <li><strong>Why Hybrid CF + LLM?</strong> – CF for stable personalization; LLM to keep playlists "on‑brief."</li>
+                    <li><strong>Why Multi‑agent & Fallbacks?</strong> – Reliability under API failures and clearer observability.</li>
+                    <li><strong>Why Offline Evaluation?</strong> – Deterministic comparisons and scalable scenario testing.</li>
+                </ul>
+            `,
+            outcome: '<p>Delivered an AI playlist engine with <strong>97.73% success</strong> (44‑scenario suite), <strong>94.46%</strong> across 6,355 "ultimate" scenarios, and <strong>89.69%</strong> across 5,080 ultra‑deep scenarios.</p>'
+        },
+        'smartnotes': {
+            title: 'Case Study: SmartNotes - Cross-Device Universal iOS App',
+            role: 'iOS Developer / Software Engineer',
+            process: `
+                <p>The goal was to build a secure, high-performance note-taking app that seamlessly syncs across iPhone and iPad devices while maintaining data privacy and delivering smooth 60fps performance even with large note collections.</p>
+                <h4>Key Decisions:</h4>
+                <ul>
+                    <li><strong>Why MVVM with Combine Framework?</strong> - MVVM architecture with Combine framework provides reactive bindings that keep the UI layer isolated from business logic. This separation enables testability and maintainability while allowing real-time updates across the app through reactive data streams.</li>
+                    <li><strong>Why Protocol-Oriented Programming?</strong> - Protocol-oriented design enabled testability and maintainability by defining clear contracts between components. This approach made it easier to mock dependencies, write unit tests, and swap implementations without affecting other parts of the system.</li>
+                    <li><strong>Why Lazy Loading with Prefetching?</strong> - Implemented lazy loading with prefetching for memory efficiency, reducing base memory to ~15MB and maintaining smooth 60fps scrolling with 1000+ notes. Dynamic cell sizing adapts to content without layout issues, ensuring optimal performance even with large datasets.</li>
+                    <li><strong>Why Progressive Biometric Authentication Fallback?</strong> - Integrated biometric authentication (Face ID/Touch ID) with a fallback to passcode, storing keys in Keychain. Added AES-256 encryption for sensitive notes to protect user data, ensuring maximum security while maintaining user convenience.</li>
+                    <li><strong>Why Background Sync with Exponential Backoff?</strong> - Reduced sync latency by 60% through intelligent background sync with exponential backoff retry logic. This ensures reliable cross-device synchronization even under poor network conditions, providing a seamless user experience across devices.</li>
+                </ul>
+            `,
+            outcome: '<p>Delivered a high-performance universal iOS app: <strong>Reduced memory footprint by 70%</strong> (from ~50MB to ~15MB base) through optimized lazy loading; <strong>Achieved consistent 60fps scrolling</strong> performance with 1000+ notes; <strong>Implemented comprehensive test coverage</strong> (72 unit tests) covering CRUD operations, edge cases, and security; <strong>Built universal app</strong> supporting both iPhone and iPad with adaptive layouts and drag-and-drop gestures; <strong>Reduced sync latency by 60%</strong> through intelligent background sync; <strong>Enhanced security</strong> with biometric authentication and end-to-end encryption (AES-256).</p>'
         }
     };
 
@@ -146,20 +177,24 @@ document.addEventListener('DOMContentLoaded', () => {
         caseStudyModal.classList.add('visible');
     }
 
-    caseStudyButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            const projectId = e.currentTarget.closest('.project-card').dataset.projectId;
-            openModal(projectId);
-        });
+    caseStudyModal.addEventListener('click', (e) => {
+        if (e.target === caseStudyModal) {
+            caseStudyModal.classList.remove('visible');
+        }
     });
 
     closeModalBtn.addEventListener('click', () => {
         caseStudyModal.classList.remove('visible');
     });
 
-    caseStudyModal.addEventListener('click', (e) => {
-        if (e.target === caseStudyModal) {
-            caseStudyModal.classList.remove('visible');
+    // Use event delegation for case study buttons
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('case-study-btn')) {
+            const projectCard = e.target.closest('.project-card');
+            if (projectCard) {
+                const projectId = projectCard.dataset.projectId;
+                openModal(projectId);
+            }
         }
     });
 
@@ -195,12 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // For skill bars
-                if (entry.target.id === 'skills') {
-                    entry.target.querySelectorAll('.skill-level').forEach(skill => {
-                        skill.style.width = skill.dataset.level + '%';
-                    });
-                }
                 scrollObserver.unobserve(entry.target);
             }
         });
