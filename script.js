@@ -8,14 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
         burger.classList.toggle('toggle');
     });
 
-    // --- Header Hide on Scroll ---
+    // --- Header Hide on Scroll (Optimized) ---
     let lastScrollTop = 0;
     const header = document.getElementById('header');
+    let ticking = false;
+
     window.addEventListener('scroll', () => {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        header.style.top = (scrollTop > lastScrollTop) ? "-80px" : "0";
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-        header.style.boxShadow = (window.scrollY > 50) ? '0 10px 30px -10px rgba(0,0,0,0.7)' : 'none';
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                header.style.top = (scrollTop > lastScrollTop) ? "-80px" : "0";
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+                header.style.boxShadow = (window.scrollY > 50) ? '0 10px 30px -10px rgba(0,0,0,0.7)' : 'none';
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
 
     // --- Typing Effect ---
@@ -40,7 +48,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     type();
-    
+
+    // --- Project Card Hover Glow Effect ---
+    document.querySelectorAll('.project-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
     // --- Case Study Modal Logic ---
     const caseStudyModal = document.getElementById('case-study-modal');
     const caseStudyContent = document.getElementById('case-study-content');
@@ -174,29 +193,132 @@ document.addEventListener('DOMContentLoaded', () => {
                 ${data.outcome}
             </div>
         `;
+
+        // Prevent layout shift
+        const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+        document.body.style.overflow = 'hidden';
+
         caseStudyModal.classList.add('visible');
+    }
+
+    function closeModal() {
+        caseStudyModal.classList.remove('visible');
+
+        // Restore layout
+        setTimeout(() => {
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+        }, 300);
     }
 
     caseStudyModal.addEventListener('click', (e) => {
         if (e.target === caseStudyModal) {
-            caseStudyModal.classList.remove('visible');
+            closeModal();
         }
     });
 
     closeModalBtn.addEventListener('click', () => {
-        caseStudyModal.classList.remove('visible');
+        closeModal();
     });
 
-    // Use event delegation for case study buttons
+    // Use event delegation for case study clicks (whole card)
     document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('case-study-btn')) {
-            const projectCard = e.target.closest('.project-card');
-            if (projectCard) {
-                const projectId = projectCard.dataset.projectId;
-                openModal(projectId);
-            }
+        const projectCard = e.target.closest('.project-card');
+        if (projectCard) {
+            const projectId = projectCard.dataset.projectId;
+            openModal(projectId);
         }
     });
+
+    // --- Skill Radar Chart ---
+    const ctx = document.getElementById('skillRadar').getContext('2d');
+
+    let skillRadarChart;
+
+    function createGradient(ctx, colorStart, colorEnd) {
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, colorStart);
+        gradient.addColorStop(1, colorEnd);
+        return gradient;
+    }
+
+    function initChart(isLight) {
+        const textColor = isLight ? '#111827' : '#EAEAEA';
+        const gridColor = isLight ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)';
+        const accentColor = '#6366f1'; // Indigo stays the same
+        const bgGradient = createGradient(ctx, 'rgba(99, 102, 241, 0.5)', 'rgba(99, 102, 241, 0.05)');
+
+        if (skillRadarChart) {
+            skillRadarChart.destroy();
+        }
+
+        skillRadarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['AI & ML', 'Backend', 'Frontend', 'Cloud/DevOps', 'Security', 'System Design'],
+                datasets: [{
+                    label: 'Skill Level',
+                    data: [95, 90, 75, 85, 80, 85],
+                    backgroundColor: bgGradient,
+                    borderColor: accentColor,
+                    borderWidth: 3,
+                    pointBackgroundColor: accentColor,
+                    pointBorderColor: isLight ? '#fff' : '#111',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: accentColor,
+                    pointRadius: 4,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: gridColor },
+                        grid: { color: gridColor },
+                        pointLabels: {
+                            color: textColor,
+                            font: {
+                                family: "'Outfit', sans-serif",
+                                size: 14,
+                                weight: '600'
+                            },
+                            backdropPadding: 10
+                        },
+                        ticks: { display: false, maxTicksLimit: 5 },
+                        suggestedMin: 20,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: isLight ? 'rgba(255, 255, 255, 0.95)' : 'rgba(28, 28, 28, 0.95)',
+                        titleColor: isLight ? '#111' : '#fff',
+                        bodyColor: isLight ? '#444' : '#ccc',
+                        borderColor: accentColor,
+                        borderWidth: 1,
+                        padding: 10,
+                        displayColors: false,
+                        callbacks: {
+                            label: function (context) {
+                                return context.raw + '% Proficiency';
+                            }
+                        }
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeOutQuart'
+                }
+            }
+        });
+    }
+
+    // Initialize with current theme
+    initChart(document.body.classList.contains('light-theme'));
 
     // --- Dark to Light Theme Transition ---
     const aboutSection = document.querySelector('#about');
@@ -204,25 +326,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const themeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            // When the 'About' section is intersecting (scrolling down into it)
             if (entry.isIntersecting) {
                 body.classList.add('light-theme');
-            } 
-            // When it's NOT intersecting
+                initChart(true); // Switch chart to Light Mode
+            }
             else {
-                // Check if we are scrolling back up into the hero section
                 if (window.scrollY < aboutSection.offsetTop / 2) {
-                   body.classList.remove('light-theme');
+                    body.classList.remove('light-theme');
+                    initChart(false); // Switch chart to Dark Mode
                 }
             }
         });
-    }, { 
-        threshold: 0.01, // Trigger as soon as a tiny part is visible
-        rootMargin: "-100px 0px -100px 0px" // Adjust trigger area
+    }, {
+        threshold: 0.01,
+        rootMargin: "-100px 0px -100px 0px"
     });
 
     themeObserver.observe(aboutSection);
-    
+
     // --- Vanilla Tilt & Scroll Observers ---
     VanillaTilt.init(document.querySelectorAll(".project-card"), { max: 5, speed: 400, glare: true, "max-glare": 0.2 });
 
