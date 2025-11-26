@@ -304,7 +304,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         displayColors: false,
                         callbacks: {
                             label: function (context) {
-                                return context.raw + '% Proficiency';
+                                const skillTechs = {
+                                    'AI & ML': 'Python, PyTorch, TensorFlow, RAG',
+                                    'Backend': 'Django, Node.js, PostgreSQL, Redis',
+                                    'Frontend': 'React, Angular, Tailwind, TypeScript',
+                                    'Cloud/DevOps': 'AWS, Docker, Kubernetes, CI/CD',
+                                    'Security': 'OAuth, JWT, Penetration Testing',
+                                    'System Design': 'Microservices, Distributed Systems'
+                                };
+                                return skillTechs[context.label] || '';
                             }
                         }
                     }
