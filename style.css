@@ -116,7 +116,7 @@ button {
     width: 100%;
     z-index: 100;
     background: var(--header-bg-color);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     transition: top 0.3s, background-color 0.5s ease, border-color 0.5s ease;
 }
@@ -464,6 +464,7 @@ nav {
     z-index: 10;
     box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, box-shadow;
     overflow: hidden;
     /* Clip image to circle */
 }
@@ -490,8 +491,10 @@ nav {
     border: 1px solid var(--border-color);
     border-radius: 12px;
     padding: 1.5rem;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     transition: transform 0.3s ease, border-color 0.3s ease;
+    will-change: transform;
 }
 
 .timeline-item:hover .timeline-content {
@@ -592,6 +595,7 @@ nav {
     padding: 2.5rem;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     transform-style: preserve-3d;
+    will-change: transform;
     display: flex;
     flex-direction: column;
     border: 1px solid var(--border-color);
@@ -796,7 +800,7 @@ nav {
     justify-content: space-around;
     align-items: center;
     gap: 1.5rem;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
 }
 
 .github-stats:hover {

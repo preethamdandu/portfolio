@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience Section Demos</title>
+    <script src="https://unpkg.com/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #0a0a0a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --text: #e5e7eb;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            color: var(--primary);
+            margin-top: 60px;
+        }
+
+        .demo-section {
+            margin-bottom: 80px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 40px;
+        }
+
+        /* Common Card Style */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        /* DEMO 1: 3D Tilt */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
+        }
+
+        .tilt-content {
+            transform: translateZ(20px);
+        }
+
+        /* DEMO 2: Draw on Scroll */
+        .timeline-container {
+            position: relative;
+            padding-left: 40px;
+            height: 300px;
+            /* Force scroll */
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: #333;
+        }
+
+        .timeline-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            background: var(--primary);
+            height: 0%;
+            transition: height 0.1s linear;
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -6px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: var(--bg);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* DEMO 3: Expandable */
+        .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .expand-content.open {
+            max-height: 200px;
+        }
+
+        .toggle-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            padding: 0;
+        }
+
+        .toggle-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Experience Section Upgrades</h1>
+
+    <!-- DEMO 1 -->
+    <div class="demo-section">
+        <h2>Option 1: 3D Tilt & Glow</h2>
+        <p>Hover over the card to see the 3D effect.</p>
+        <div class="card tilt-card" data-tilt data-tilt-glare data-tilt-max-glare="0.3">
+            <div class="tilt-content">
+                <h3>Software Engineer</h3>
+                <p><strong>HCLTech</strong> | 2023</p>
+                <p>Hover me! I respond to your mouse movement with a premium 3D feel.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEMO 2 -->
+    <div class="demo-section">
+        <h2>Option 2: Draw-on-Scroll Timeline</h2>
+        <p>Scroll down to see the line light up.</p>
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            <div class="timeline-progress" id="progress-line"></div>
+
+            <div style="position: relative; margin-bottom: 50px;">
+                <div class="timeline-dot"></div>
+                <div class="card">
+                    <h3>Role 1</h3>
+                    <p>Scroll down...</p>
+                </div>
+            </div>
+            <div style="position: relative; margin-top: 100px;">
+                <div class="timeline-dot" style="top: 20px;"></div>
+                <div class="card">
+                    <h3>Role 2</h3>
+                    <p>Keep scrolling...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEMO 3 -->
+    <div class="demo-section">
+        <h2>Option 3: Expandable "Deep Dive"</h2>
+        <p>Click "View Details" to reveal more info.</p>
+        <div class="card">
+            <h3>Senior Developer</h3>
+            <p>Led a team of 5 engineers to build a cloud-native app.</p>
+            <button class="toggle-btn" onclick="toggleDetails(this)">View Details ↓</button>
+            <div class="expand-content">
+                <ul style="margin-top: 15px; padding-left: 20px; color: #ccc;">
+                    <li>Reduced latency by 40% using Redis caching.</li>
+                    <li>Implemented CI/CD pipelines with GitHub Actions.</li>
+                    <li>Mentored 2 junior developers to promotion.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEMO 4 -->
+    <div class="demo-section">
+        <h2>Option 4: Skill Connector</h2>
+        <p>Hover over "Python" to see it light up in <strong>both</strong> roles.</p>
+        <div class="card">
+            <h3>Role A</h3>
+            <div class="tech-stack">
+                <span class="badge python" onmouseenter="highlightSkill('python')"
+                    onmouseleave="resetSkill('python')">Python</span>
+                <span class="badge">React</span>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Role B</h3>
+            <div class="tech-stack">
+                <span class="badge python" onmouseenter="highlightSkill('python')"
+                    onmouseleave="resetSkill('python')">Python</span>
+                <span class="badge">AWS</span>
+            </div>
+        </div>
+        <style>
+            .badge {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 5px 10px;
+                border-radius: 15px;
+                font-size: 0.8rem;
+                margin-right: 5px;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                border: 1px solid transparent;
+            }
+
+            .badge.active {
+                background: rgba(99, 102, 241, 0.2);
+                border-color: #6366f1;
+                box-shadow: 0 0 10px #6366f1;
+                color: #fff;
+            }
+        </style>
+    </div>
+
+    <!-- DEMO 5 -->
+    <div class="demo-section">
+        <h2>Option 5: Impact Shimmer</h2>
+        <p>Watch the "Impact" box glow to grab attention.</p>
+        <div class="card">
+            <h3>Software Engineer</h3>
+            <div class="impact-box">
+                <strong>Impact:</strong> Improved system efficiency by 40%.
+            </div>
+        </div>
+        <style>
+            .impact-box {
+                background: rgba(255, 255, 255, 0.05);
+                padding: 15px;
+                border-left: 3px solid #6366f1;
+                margin-top: 10px;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .impact-box::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 50%;
+                height: 100%;
+                background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1), transparent);
+                transform: skewX(-25deg);
+                animation: shimmer 3s infinite;
+            }
+
+            @keyframes shimmer {
+                100% {
+                    left: 200%;
+                }
+            }
+        </style>
+    </div>
+
+    <!-- DEMO 6 -->
+    <div class="demo-section">
+        <h2>Option 6: Logo Reveal</h2>
+        <p>Hover the card to see the logo burst into color.</p>
+        <div class="card logo-card">
+            <div class="logo-circle">
+                <!-- Using a placeholder colored square as logo -->
+                <div class="mock-logo"></div>
+            </div>
+            <div style="margin-left: 60px;">
+                <h3>Tech Corp</h3>
+                <p>Senior Engineer</p>
+            </div>
+        </div>
+        <style>
+            .logo-card:hover .mock-logo {
+                filter: grayscale(0%);
+                transform: scale(1.1);
+                box-shadow: 0 0 15px #6366f1;
+            }
+
+            .logo-circle {
+                position: absolute;
+                left: 20px;
+                top: 20px;
+            }
+
+            .mock-logo {
+                width: 40px;
+                height: 40px;
+                background: linear-gradient(45deg, #ff00cc, #3333ff);
+                /* Colorful logo */
+                border-radius: 50%;
+                filter: grayscale(100%);
+                /* Start B&W */
+                transition: all 0.4s ease;
+            }
+        </style>
+    </div>
+
+    <script>
+        // Demo 2 Logic
+        const progressLine = document.getElementById('progress-line');
+        const container = document.querySelector('.timeline-container');
+
+        window.addEventListener('scroll', () => {
+            const rect = container.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const totalHeight = rect.height;
+                const visibleHeight = windowHeight - rect.top - 100; // Offset
+                let percentage = (visibleHeight / totalHeight) * 100;
+                percentage = Math.min(Math.max(percentage, 0), 100);
+                progressLine.style.height = percentage + '%';
+            }
+        });
+
+        // Demo 3 Logic
+        function toggleDetails(btn) {
+            const content = btn.nextElementSibling;
+            content.classList.toggle('open');
+            btn.textContent = content.classList.contains('open') ? 'Hide Details ↑' : 'View Details ↓';
+        }
+
+        // Demo 4 Logic
+        function highlightSkill(skill) {
+            document.querySelectorAll('.' + skill).forEach(el => el.classList.add('active'));
+        }
+        function resetSkill(skill) {
+            document.querySelectorAll('.' + skill).forEach(el => el.classList.remove('active'));
+        }
+    </script>
+
+</body>
+
+</html>
