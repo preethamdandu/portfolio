@@ -1253,3 +1253,66 @@ body.light-theme .skill-list li {
     transform: rotate(45deg) translate(-5px, -6px);
     background-color: var(--accent-color);
 }
+
+/* Expandable Details */
+.toggle-details-btn {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 15px;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s ease;
+}
+
+.toggle-details-btn:hover {
+    color: #fff;
+}
+
+.toggle-details-btn i {
+    transition: transform 0.3s ease;
+}
+
+.toggle-details-btn.open i {
+    transform: rotate(180deg);
+}
+
+.role-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease;
+    opacity: 0;
+}
+
+.role-details.open {
+    max-height: 500px;
+    /* Arbitrary large height */
+    opacity: 1;
+    margin-top: 15px;
+}
+
+.role-details ul {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.role-details li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.role-details li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+}

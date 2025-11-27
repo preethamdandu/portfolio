@@ -376,3 +376,17 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 });
+
+// --- Expandable Details Logic ---
+function toggleDetails(btn) {
+    const detailsDiv = btn.nextElementSibling;
+    detailsDiv.classList.toggle('open');
+    btn.classList.toggle('open');
+
+    // Update button text
+    if (detailsDiv.classList.contains('open')) {
+        btn.innerHTML = 'Hide Details <i class="fas fa-chevron-up"></i>';
+    } else {
+        btn.innerHTML = 'View Details <i class="fas fa-chevron-down"></i>';
+    }
+}
