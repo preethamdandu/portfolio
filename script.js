@@ -336,19 +336,56 @@ document.addEventListener('DOMContentLoaded', () => {
     initChart(document.body.classList.contains('light-theme'));
 
     // --- Dark to Light Theme Transition ---
+    // --- Theme Switcher Logic ---
+    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
     const aboutSection = document.querySelector('#about');
     const body = document.body;
 
+    // Check for saved user preference
+    const savedTheme = localStorage.getItem('theme');
+    let isManualOverride = localStorage.getItem('manualOverride') === 'true';
+
+    function setTheme(isLight) {
+        if (isLight) {
+            body.classList.add('light-theme');
+            toggleSwitch.checked = true;
+            initChart(true);
+        } else {
+            body.classList.remove('light-theme');
+            toggleSwitch.checked = false;
+            initChart(false);
+        }
+    }
+
+    // Initialize Theme
+    if (savedTheme) {
+        setTheme(savedTheme === 'light');
+    }
+
+    // Toggle Switch Change
+    toggleSwitch.addEventListener('change', function (e) {
+        isManualOverride = true;
+        localStorage.setItem('manualOverride', 'true');
+
+        if (e.target.checked) {
+            setTheme(true);
+            localStorage.setItem('theme', 'light');
+        } else {
+            setTheme(false);
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+
+    // Scroll Observer (Only active if no manual override)
     const themeObserver = new IntersectionObserver((entries) => {
+        if (isManualOverride) return; // Skip if user manually set theme
+
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                body.classList.add('light-theme');
-                initChart(true); // Switch chart to Light Mode
-            }
-            else {
+                setTheme(true);
+            } else {
                 if (window.scrollY < aboutSection.offsetTop / 2) {
-                    body.classList.remove('light-theme');
-                    initChart(false); // Switch chart to Dark Mode
+                    setTheme(false);
                 }
             }
         });
