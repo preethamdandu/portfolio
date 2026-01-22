@@ -8,6 +8,29 @@ document.addEventListener('DOMContentLoaded', () => {
         burger.classList.toggle('toggle');
     });
 
+    // --- Live GitHub Stats ---
+    async function fetchGitHubStats() {
+        const username = 'preethamdandu';
+        const reposElement = document.getElementById('stat-repos');
+
+        try {
+            const response = await fetch(`https://api.github.com/users/${username}`);
+            if (!response.ok) throw new Error('GitHub API error');
+            const data = await response.json();
+
+            // Update repos count with animation
+            if (reposElement) {
+                reposElement.textContent = data.public_repos;
+                reposElement.classList.add('stat-loaded');
+            }
+        } catch (error) {
+            console.warn('Could not fetch GitHub stats:', error);
+            // Fallback to static value
+            if (reposElement) reposElement.textContent = '19+';
+        }
+    }
+    fetchGitHubStats();
+
     // --- Header Hide on Scroll (Optimized) ---
     let lastScrollTop = 0;
     const header = document.getElementById('header');
@@ -335,15 +358,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize with current theme
     initChart(document.body.classList.contains('light-theme'));
 
-    // --- Dark to Light Theme Transition ---
     // --- Theme Switcher Logic ---
     const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-    const aboutSection = document.querySelector('#about');
     const body = document.body;
 
-    // Check for saved user preference
+    // Check for saved user preference, default to dark
     const savedTheme = localStorage.getItem('theme');
-    let isManualOverride = localStorage.getItem('manualOverride') === 'true';
 
     function setTheme(isLight) {
         if (isLight) {
@@ -357,16 +377,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Initialize Theme
-    if (savedTheme) {
-        setTheme(savedTheme === 'light');
+    // Initialize Theme - default to dark if no saved preference
+    if (savedTheme === 'light') {
+        setTheme(true);
+    } else {
+        setTheme(false); // Dark is default
     }
 
-    // Toggle Switch Change
+    // Toggle Switch Change - saves preference
     toggleSwitch.addEventListener('change', function (e) {
-        isManualOverride = true;
-        localStorage.setItem('manualOverride', 'true');
-
         if (e.target.checked) {
             setTheme(true);
             localStorage.setItem('theme', 'light');
@@ -375,26 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('theme', 'dark');
         }
     });
-
-    // Scroll Observer (Only active if no manual override)
-    const themeObserver = new IntersectionObserver((entries) => {
-        if (isManualOverride) return; // Skip if user manually set theme
-
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                setTheme(true);
-            } else {
-                if (window.scrollY < aboutSection.offsetTop / 2) {
-                    setTheme(false);
-                }
-            }
-        });
-    }, {
-        threshold: 0.01,
-        rootMargin: "-100px 0px -100px 0px"
-    });
-
-    themeObserver.observe(aboutSection);
 
     // --- Vanilla Tilt & Scroll Observers ---
     VanillaTilt.init(document.querySelectorAll(".project-card"), { max: 5, speed: 400, glare: true, "max-glare": 0.2 });
