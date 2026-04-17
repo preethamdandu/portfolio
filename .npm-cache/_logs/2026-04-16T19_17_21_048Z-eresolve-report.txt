@@ -1,0 +1,18 @@
+'Log files:
+/Users/preethamdandu/Desktop/pkapkapkap/.npm-cache/_logs/2026-04-16T19_17_21_048Z-debug-0.log
+
+# npm resolution error report
+
+While resolving: next-app@0.1.0
+Found: three@0.184.0
+node_modules/three
+  three@"^0.184.0" from the root project
+
+Could not resolve dependency:
+peer three@">= 0.168.0 < 0.184.0" from postprocessing@6.39.0
+node_modules/postprocessing
+  postprocessing@"*" from the root project
+
+Fix the upstream dependency conflict, or retry
+this command with --force or --legacy-peer-deps
+to accept an incorrect (and potentially broken) dependency resolution.

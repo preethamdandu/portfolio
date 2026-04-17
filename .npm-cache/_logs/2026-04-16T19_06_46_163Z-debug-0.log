@@ -1,0 +1,21 @@
+0 verbose cli /opt/homebrew/Cellar/node/24.4.0/bin/node /opt/homebrew/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@11.4.2
+2 info using node@v24.4.0
+3 silly config load:file:/opt/homebrew/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/preethamdandu/Desktop/pkapkapkap/.npmrc
+5 silly config load:file:/opt/homebrew/etc/npmrc
+6 verbose title npm exec create-next-app@latest next-app --typescript --tailwind --eslint --app --src-dir --import-alias @/*
+7 verbose argv "exec" "--yes" "--" "create-next-app@latest" "next-app" "--typescript" "--tailwind" "--eslint" "--app" "--src-dir" "--import-alias" "@/*"
+8 verbose logfile logs-max:10 dir:/Users/preethamdandu/Desktop/pkapkapkap/.npm-cache/_logs/2026-04-16T19_06_46_163Z-
+9 verbose logfile /Users/preethamdandu/Desktop/pkapkapkap/.npm-cache/_logs/2026-04-16T19_06_46_163Z-debug-0.log
+10 silly logfile done cleaning log files
+11 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+12 http fetch GET 200 https://registry.npmjs.org/create-next-app 194ms (cache revalidated)
+13 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+14 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+15 verbose cwd /Users/preethamdandu/Desktop/pkapkapkap
+16 verbose os Darwin 25.4.0
+17 verbose node v24.4.0
+18 verbose npm  v11.4.2
+19 verbose exit 0
+20 info ok

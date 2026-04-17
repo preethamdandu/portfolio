@@ -1,26 +1,140 @@
 @import "tailwindcss";
+@import "../styles/typography.css";
+@import "../styles/animations.css";
 
+/* Next.js default config resets */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ── Canvas ── */
+  --bg-void:       #0A0A0B;
+  --bg-elevated:   #121215;
+  --bg-sunken:     #060607;
+  --bg-paper:      #F5F2EC;
+
+  /* ── Ink ── */
+  --ink-primary:   #EDEDED;
+  --ink-secondary: #9A9AA2;
+  --ink-tertiary:  #5C5C63;
+  --ink-inverse:   #0A0A0B;
+
+  /* ── Signal (2% usage rule) ── */
+  --signal:        #C6FF3D;
+  --signal-dim:    #7A9E26;
+  --signal-glow:   rgba(198, 255, 61, 0.35);
+
+  /* ── Support ── */
+  --warn:          #FF8A3D;
+  --hairline:      rgba(237, 237, 237, 0.08);
+  --hairline-bold: rgba(237, 237, 237, 0.16);
+
+  /* ── Role Tints ── */
+  --tag-swe:       #7DD3FC;
+  --tag-backend:   #C6FF3D;
+  --tag-ai:        #F0ABFC;
+  --tag-ml:        #FDBA74;
+
+  /* ── Spacing (8px base) ── */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+  --space-10: 80px;
+  --space-12: 96px;
+  --space-20: 160px;
+
+  /* ── Grid ── */
+  --grid-columns: 12;
+  --grid-gutter: 24px;
+  --container-max: 1440px;
+  --content-max: 1200px;
+
+  /* ── Radius ── */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 8px;
+
+  /* ── Motion ── */
+  --ease-entrance: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-ui:       cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-micro: 180ms;
+  --duration-std:   420ms;
+  --duration-orch:  800ms;
+
+  /* ── Z-index scale ── */
+  --z-base: 0;
+  --z-card: 10;
+  --z-sticky: 100;
+  --z-nav: 500;
+  --z-cursor: 9999;
 }
 
+/* Tailwind Theme Configuration */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-canvas-void: var(--bg-void);
+  --color-canvas-elevated: var(--bg-elevated);
+  --color-canvas-sunken: var(--bg-sunken);
+  --color-canvas-paper: var(--bg-paper);
+
+  --color-ink-primary: var(--ink-primary);
+  --color-ink-secondary: var(--ink-secondary);
+  --color-ink-tertiary: var(--ink-tertiary);
+  --color-ink-inverse: var(--ink-inverse);
+
+  --color-signal: var(--signal);
+  --color-signal-dim: var(--signal-dim);
+  --color-signal-glow: var(--signal-glow);
+  
+  --color-warn: var(--warn);
+  
+  --color-hairline: var(--hairline);
+  --color-hairline-bold: var(--hairline-bold);
+
+  --color-tag-swe: var(--tag-swe);
+  --color-tag-backend: var(--tag-backend);
+  --color-tag-ai: var(--tag-ai);
+  --color-tag-ml: var(--tag-ml);
+
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+  
+  --animate-pulse-signal: pulse-signal 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (max-width: 768px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --grid-gutter: 16px;
+  }
+}
+
+@media (min-width: 1536px) {
+  :root {
+    --grid-gutter: 96px;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-void);
+  color: var(--ink-primary);
+  font-family: var(--font-body), sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gutter);
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-inline: var(--space-6);
+}
+
+::selection {
+  background: var(--signal-glow);
+  color: var(--signal);
 }

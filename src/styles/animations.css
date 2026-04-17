@@ -1,0 +1,49 @@
+/* animations.css */
+
+@keyframes pulse-signal {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-signal {
+  animation: pulse-signal 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Flicker effect for numbers before they snap */
+@keyframes flicker {
+  0%   { opacity: 1; }
+  25%  { opacity: 0.8; }
+  50%  { opacity: 0.5; }
+  75%  { opacity: 0.9; }
+  100% { opacity: 1; }
+}
+
+.flicker {
+  animation: flicker 0.1s infinite;
+}
+
+/* Base transitions */
+.transition-smooth {
+  transition: all var(--duration-std) var(--ease-ui);
+}
+
+.transition-fast {
+  transition: all var(--duration-micro) var(--ease-ui);
+}
+
+.transition-slow {
+  transition: all var(--duration-orch) var(--ease-entrance);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
