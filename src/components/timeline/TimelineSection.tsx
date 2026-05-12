@@ -83,13 +83,15 @@ export default function TimelineSection() {
     }
   };
 
+  const ease: [number, number, number, number] = [0.2, 0.8, 0.2, 1];
+
   const itemVariants = {
     hidden: { opacity: 0, y: 30, filter: 'blur(4px)' },
     visible: { 
       opacity: 1, 
       y: 0, 
       filter: 'blur(0px)',
-      transition: { duration: 0.8, ease: [0.2, 0.8, 0.2, 1] as const } 
+      transition: { duration: 0.8, ease } 
     }
   };
 

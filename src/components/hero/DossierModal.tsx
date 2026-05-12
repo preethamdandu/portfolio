@@ -204,7 +204,7 @@ export default function DossierModal({ isOpen, onClose }: DossierModalProps) {
                       className="relative aspect-[3/4] bg-[var(--bg-void)] border border-[var(--hairline)] overflow-hidden"
                       initial={{ opacity: 0, filter: 'blur(20px) brightness(0.3)' }}
                       animate={phase >= 3 ? { opacity: 1, filter: 'blur(0px) brightness(1)' } : {}}
-                      transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] }}
+                      transition={{ duration: 0.8, ease: [0.2, 0.8, 0.2, 1] as [number, number, number, number] }}
                     >
                       {/* Duotone overlay */}
                       <div className="absolute inset-0 bg-[var(--signal)] mix-blend-color opacity-[0.06] z-10 pointer-events-none" />

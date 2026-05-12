@@ -27,7 +27,7 @@ export default function LineReveal({ text, className = "", delay = 0, suffix }: 
             animate={isInView ? { y: 0 } : { y: "110%" }}
             transition={{
               duration: 0.8,
-              ease: [0.2, 0.8, 0.2, 1],
+              ease: [0.2, 0.8, 0.2, 1] as [number, number, number, number],
               delay: delay + i * 0.08,
             }}
             className="flex items-baseline"
