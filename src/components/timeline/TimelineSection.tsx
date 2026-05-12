@@ -89,7 +89,7 @@ export default function TimelineSection() {
       opacity: 1, 
       y: 0, 
       filter: 'blur(0px)',
-      transition: { duration: 0.8, ease: [0.2, 0.8, 0.2, 1] } 
+      transition: { duration: 0.8, ease: [0.2, 0.8, 0.2, 1] as const } 
     }
   };
 
