@@ -7,22 +7,23 @@ import ScrollReveal from '../motion/ScrollReveal';
 
 export default function Footer() {
   return (
-    <section id="contact" className="relative w-full py-32 bg-[var(--bg-void)] min-h-screen flex flex-col justify-between">
+    <section id="contact" className="relative w-full pt-40 lg:pt-48 pb-32 bg-[var(--bg-void)] min-h-screen flex flex-col justify-between">
       <div className="grid-container w-full">
         <div className="col-span-12 mb-24">
           <SectionIndex index="07" title="End of Document" />
         </div>
 
         <div className="col-span-12 xl:col-span-8 xl:col-start-3 text-center mb-24">
-          <ScrollReveal>
-            <h2 className="display-m text-[var(--ink-primary)] mb-6">
-              Available for roles in <br className="hidden md:block"/>
-              software, backend, ai, and ml.
-            </h2>
-            <p className="body-l text-[var(--ink-secondary)] italic">
-              Shipping now — open to what's next.
-            </p>
-          </ScrollReveal>
+          <h2 className="display-m text-[var(--ink-primary)] mb-6">
+            Available for roles in <br className="hidden md:block"/>
+            software, backend, ai, and ml.
+          </h2>
+          <p className="body-l text-[var(--ink-secondary)] italic mb-12">
+            Shipping now — open to what's next.
+          </p>
+          <a href="mailto:preethamdandu8@gmail.com" className="inline-flex items-center justify-center px-10 py-4 bg-[var(--ink-primary)] text-[var(--bg-void)] font-mono text-sm tracking-widest hover:bg-[var(--signal)] hover:-translate-y-1 transition-all duration-300 rounded-full" data-magnetic>
+            GET IN TOUCH <span className="ml-3 font-sans opacity-70">↗</span>
+          </a>
         </div>
 
         {/* Middle divider */}

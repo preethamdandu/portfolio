@@ -11,7 +11,7 @@ export default function CapabilitiesSection() {
   const [hoveredRole, setHoveredRole] = useState<string | null>(null);
 
   return (
-    <section id="capabilities" className="relative min-h-screen py-32 bg-[var(--bg-void)]">
+    <section id="capabilities" className="relative min-h-screen pt-40 lg:pt-48 pb-32 bg-[var(--bg-void)]">
       <div className="grid-container mb-24">
         <div className="col-span-12 md:col-span-6">
           <SectionIndex index="02" title="Capabilities" />
@@ -30,20 +30,31 @@ export default function CapabilitiesSection() {
           return (
             <div 
               key={role.id}
-              className={`col-span-12 md:col-span-6 xl:col-span-3 flex flex-col group transition-all duration-300 ease-out border-l border-[var(--hairline)] pl-6 py-4 xl:py-0 cursor-default ${isDimmed ? 'opacity-40' : 'opacity-100'}`}
+              className={`col-span-12 md:col-span-6 xl:col-span-3 flex flex-col group transition-all duration-500 ease-out border-l border-[var(--hairline)] pl-6 py-6 xl:py-4 cursor-default rounded-r-lg ${isDimmed ? 'opacity-30' : 'opacity-100'}`}
               style={{
-                transform: isHovered ? 'translateY(-4px)' : 'translateY(0)',
-                borderLeftColor: isHovered ? role.tint : 'var(--hairline)'
+                transform: isHovered ? 'translateY(-6px)' : 'translateY(0)',
+                borderLeftColor: isHovered ? role.tint : 'var(--hairline)',
+                backgroundColor: isHovered ? 'rgba(255,255,255,0.015)' : 'transparent',
+                boxShadow: isHovered ? `-1px 0 15px -5px ${role.tint}` : 'none'
               }}
               onMouseEnter={() => setHoveredRole(role.id)}
               onMouseLeave={() => setHoveredRole(null)}
             >
               <ScrollReveal delay={idx * 0.1} className="flex flex-col h-full">
-                <span className="mono text-[var(--ink-tertiary)] mb-8 tracking-widest">
+                <span 
+                  className="mono mb-8 tracking-widest transition-colors duration-300"
+                  style={{ color: isHovered ? role.tint : 'var(--ink-tertiary)' }}
+                >
                   /0{idx + 1}
                 </span>
                 
-                <h3 className="display-m text-[var(--ink-primary)] mb-6 whitespace-pre-line leading-tight">
+                <h3 
+                  className="display-m mb-6 whitespace-pre-line leading-tight transition-all duration-300"
+                  style={{ 
+                    color: isHovered ? role.tint : 'var(--ink-primary)',
+                    textShadow: isHovered ? `0 0 20px ${role.tint}60` : 'none'
+                  }}
+                >
                   {role.label.replace(' ', '\n')}
                 </h3>
                 
@@ -53,12 +64,16 @@ export default function CapabilitiesSection() {
 
                 <div className="flex flex-col gap-2 font-mono text-sm text-[var(--ink-secondary)] mb-16">
                   {content.stack.map(tech => (
-                    <span key={tech}>{tech}</span>
+                    <span key={tech} className={`transition-colors duration-300 ${isHovered ? 'text-[var(--ink-primary)]' : ''}`}>
+                      {tech}
+                    </span>
                   ))}
                 </div>
 
                 <div className="mt-auto">
-                  <span className="mono text-[var(--ink-tertiary)] block mb-4">SIGNATURE</span>
+                  <span className={`mono block mb-4 transition-colors duration-300 ${isHovered ? 'text-[var(--ink-secondary)]' : 'text-[var(--ink-tertiary)]'}`}>
+                    SIGNATURE
+                  </span>
                   <div 
                     className="display-l mb-2 tabular-nums transition-colors duration-300"
                     style={{ color: isHovered ? role.tint : 'var(--signal)' }}

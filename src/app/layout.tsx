@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${inter.variable} ${jetbrains.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${geist.variable} ${inter.variable} ${jetbrains.variable} ${instrumentSerif.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -35,7 +35,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="antialiased">
+      <body className="antialiased font-secondary text-[var(--ink-primary)] bg-[var(--bg-void)] min-h-screen flex flex-col" suppressHydrationWarning>
         {/* We will wrap this in LenisProvider and add Navbar, Cursor in Phase 2 */}
         {children}
       </body>

@@ -38,14 +38,15 @@ export default function ThesisRibbon() {
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isWeakDevice = (navigator.hardwareConcurrency || 4) <= 4;
+    const isMobile = window.innerWidth < 768;
     
-    if (!prefersReducedMotion && !isWeakDevice) {
+    if (!prefersReducedMotion && !isWeakDevice && !isMobile) {
       setShouldLoad(true);
     }
   }, []);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-50 mix-blend-multiply">
+    <div ref={containerRef} className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-50 mix-blend-multiply hidden md:block">
       {shouldLoad && <RibbonCanvas progress={pVal} />}
     </div>
   );

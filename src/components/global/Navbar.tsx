@@ -39,7 +39,7 @@ export default function Navbar() {
       </div>
 
       <div className="flex items-center gap-6">
-        <div className="hidden md:block font-mono text-xs tabular-nums tracking-widest opacity-60">
+        <div className="hidden md:block font-mono text-xs tabular-nums tracking-widest opacity-60" suppressHydrationWarning>
           {time || '00:00:00'}
         </div>
         <div className="border border-[var(--hairline-bold)] rounded-full px-3 py-1 text-xs font-mono uppercase bg-[var(--bg-elevated)] bg-opacity-30 backdrop-blur-md flex items-center gap-2">

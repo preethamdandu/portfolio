@@ -9,7 +9,7 @@ export default function HeroFallbackSVG() {
         </defs>
         
         {/* Isometric perspective grid */}
-        <g transform="translate(50%, 40%) scale(1) rotate(45) skewX(20) skewY(20)">
+        <g style={{ transform: "translate(50%, 40%) scale(1) rotate(45deg) skewX(20deg) skewY(20deg)", transformOrigin: 'center' }}>
           <rect x="-1000" y="-1000" width="2000" height="2000" fill="url(#grid)" />
           
           <circle cx="0" cy="0" r="100" fill="none" stroke="var(--hairline)" strokeWidth="1" />

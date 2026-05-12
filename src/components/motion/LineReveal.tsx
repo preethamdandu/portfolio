@@ -7,9 +7,10 @@ interface LineRevealProps {
   text: string;
   className?: string;
   delay?: number;
+  suffix?: React.ReactNode;
 }
 
-export default function LineReveal({ text, className = "", delay = 0 }: LineRevealProps) {
+export default function LineReveal({ text, className = "", delay = 0, suffix }: LineRevealProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
 
@@ -29,11 +30,14 @@ export default function LineReveal({ text, className = "", delay = 0 }: LineReve
               ease: [0.2, 0.8, 0.2, 1],
               delay: delay + i * 0.08,
             }}
+            className="flex items-baseline"
           >
             {line === "" ? "\u00A0" : line}
+            {i === lines.length - 1 && suffix}
           </motion.div>
         </div>
       ))}
     </div>
   );
 }
+

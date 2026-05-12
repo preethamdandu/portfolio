@@ -14,7 +14,7 @@ export default function Home() {
     <LenisProvider>
       <Navbar />
       <MagneticCursor />
-      <main className="w-full overflow-hidden">
+      <main className="w-full">
         <HeroSection />
         <CapabilitiesSection />
         <CaseFilesReel />

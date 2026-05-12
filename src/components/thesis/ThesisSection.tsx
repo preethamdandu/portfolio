@@ -63,7 +63,7 @@ export default function ThesisSection() {
 
         {/* 3-Tier Grid */}
         <div className="col-span-12 flex flex-col md:flex-row gap-0 border border-[var(--ink-inverse)] border-opacity-20 bg-[var(--bg-paper)]">
-          <ScrollReveal delay={0} className="flex-1 p-8 border-b md:border-b-0 md:border-r border-[var(--ink-inverse)] border-opacity-20 hover:bg-black hover:bg-opacity-5 transition-colors">
+          <ScrollReveal delay={0} className="flex-1 p-8 border-b md:border-b-0 md:border-r border-[var(--ink-inverse)] border-opacity-20 hover:bg-black/5 transition-colors">
             <h4 className="mono mb-8 opacity-60">INFRASTRUCTURE</h4>
             <div className="flex flex-col gap-2">
               <div className="serif text-3xl mb-4">4.2B samples</div>
@@ -73,7 +73,7 @@ export default function ThesisSection() {
             </div>
           </ScrollReveal>
           
-          <ScrollReveal delay={0.1} className="flex-1 p-8 border-b md:border-b-0 md:border-r border-[var(--ink-inverse)] border-opacity-20 hover:bg-black hover:bg-opacity-5 transition-colors">
+          <ScrollReveal delay={0.1} className="flex-1 p-8 border-b md:border-b-0 md:border-r border-[var(--ink-inverse)] border-opacity-20 hover:bg-black/5 transition-colors">
             <h4 className="mono mb-8 opacity-60">FEATURE FUSION</h4>
             <div className="flex flex-col gap-2">
               <div className="serif text-3xl mb-4">0.892 AUROC</div>
@@ -83,7 +83,7 @@ export default function ThesisSection() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2} className="flex-1 p-8 hover:bg-black hover:bg-opacity-5 transition-colors">
+          <ScrollReveal delay={0.2} className="flex-1 p-8 hover:bg-black/5 transition-colors">
             <h4 className="mono mb-8 opacity-60">LLM SAFETY</h4>
             <div className="flex flex-col gap-2">
               <div className="serif text-3xl mb-4">κ = 0.82</div>
@@ -94,10 +94,16 @@ export default function ThesisSection() {
           </ScrollReveal>
         </div>
 
-        <div className="col-span-12 mt-16 flex gap-8 justify-center mono opacity-70">
-          <a href="/thesis" className="hover:opacity-100 transition-opacity border-b border-transparent hover:border-[var(--ink-inverse)]">READ THESIS →</a>
-          <a href="#" className="hover:opacity-100 transition-opacity border-b border-transparent hover:border-[var(--ink-inverse)]">PROQUEST DOI ↗</a>
-          <a href="#" className="hover:opacity-100 transition-opacity border-b border-transparent hover:border-[var(--ink-inverse)]">GITHUB: PLATFORM ↗</a>
+        <div className="col-span-12 mt-24 flex flex-wrap gap-4 justify-center mono text-xs">
+          <a href="/thesis" className="px-6 py-3 border border-[var(--ink-inverse)] border-opacity-20 bg-[var(--bg-paper)] hover:bg-[var(--ink-inverse)] hover:text-[var(--bg-paper)] transition-colors rounded-full flex items-center gap-2">
+            READ THESIS <span className="text-xl leading-none">→</span>
+          </a>
+          <a href="#" className="px-6 py-3 border border-[var(--ink-inverse)] border-opacity-20 bg-[var(--bg-paper)] hover:bg-[var(--ink-inverse)] hover:text-[var(--bg-paper)] transition-colors rounded-full flex items-center gap-2">
+            PROQUEST DOI <span className="text-xl leading-none">↗</span>
+          </a>
+          <a href="#" className="px-6 py-3 border border-[var(--ink-inverse)] border-opacity-20 bg-[var(--bg-paper)] hover:bg-[var(--ink-inverse)] hover:text-[var(--bg-paper)] transition-colors rounded-full flex items-center gap-2">
+            GITHUB: PLATFORM <span className="text-xl leading-none">↗</span>
+          </a>
         </div>
       </div>
     </section>
